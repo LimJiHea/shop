@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Thymeleaf 링크처리 예제 페이지</h1>
+    <div>
+        <a th:href="@{/thymeleaf/ex01}">예제1 페이지 이동</a>              <!--Context-relative URL 방식 : 실행하는 애플리케이션 서버 내부 이동-->
+    </div>
+    <div>
+        <a th:href="@{https://www.thymeleaf.org/}">thymeleaf 공식 페이지 이동</a>      <!--Absolute URL 방식 : 이동할 서버의 URL 입력 "http://, https://로 시작함-->
+    </div>
+    <div>
+        <a th:href="@{/thymeleaf/ex06(param1 = '파라미터 데이터1', param2 = '파라미터 데이터2')}">thymeleaf 파라미터 전달</a>           <!--링크 이동시 파라미터값을 전달(key,value)-->
+    </div>
+</body>
+</html>
