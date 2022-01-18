@@ -13,22 +13,22 @@
 
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                        <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"> <!--관리자 계정으로 로그인한 경우 보여줌-->
                             <a class="nav-link" href="/admin/item/new">상품 등록</a>
                         </li>
-                        <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                        <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">  <!--관리자 계정으로 로그인한 경우 보여줌-->
                             <a class="nav-link" href="/admin/items">상품 관리</a>
                         </li>
-                        <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <li class="nav-item" sec:authorize="isAuthenticated()">     <!--로그인(인증) 했을 경우 보여줌-->
                             <a class="nav-link" href="/cart">장바구니</a>
                         </li>
-                        <li class="nav-item"  sec:authorize="isAuthenticated()">
+                        <li class="nav-item"  sec:authorize="isAuthenticated()">     <!--로그인(인증) 했을 경우 보여줌-->
                             <a class="nav-link" href="/orders">구매이력</a>
                         </li>
-                        <li class="nav-item"  sec:authorize="isAnonymous()">
+                        <li class="nav-item"  sec:authorize="isAnonymous()">    <!--로그인 하지 않은 상태면 보여줌-->
                             <a class="nav-link" href="/members/login">로그인</a>
                         </li>
-                        <li class="nav-item"  sec:authorize="isAuthenticated()">
+                        <li class="nav-item"  sec:authorize="isAuthenticated()">    <!--로그인(인증) 했을 경우 보여줌-->
                             <a class="nav-link" href="/members/logout">로그아웃</a>
                         </li>
                     </ul>
