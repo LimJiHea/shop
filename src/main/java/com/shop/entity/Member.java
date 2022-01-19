@@ -41,8 +41,9 @@ public class Member {
         member.setAddress(memberFormDto.getAddress());
         String password = passwordEncoder.encode(memberFormDto.getPassword());  //스프링 시큐리티 설정 클래스에 등록한 BCryptPasswordEncoder Bean을 파라미터로 넘겨 암호화
         member.setPassword(password);
-        member.setRole(Role.USER);
+        member.setRole(Role.ADMIN);     //member 엔티티 생성시 관리자로 생성하도록 수정
 
         return member;
     }
+
 }
