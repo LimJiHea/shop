@@ -20,7 +20,7 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne                      //한명의 회원은 여러 번 주문을 할 수 있으므로 주문 엔티티 기준에서 다대일 단방향 매핑을 한다.
+    @ManyToOne(fetch = FetchType.LAZY)         //한명의 회원은 여러 번 주문을 할 수 있으므로 주문 엔티티 기준에서 다대일 단방향 매핑을 한다.
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -29,7 +29,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;    //주문상태
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)       //부모 엔티티의 영속성 상태 변화를 자식 엔티티에 모두 전이하는 CascadeTypeAll옵션 설정
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)       //부모 엔티티의 영속성 상태 변화를 자식 엔티티에 모두 전이하는 CascadeTypeAll옵션 설정
                                                                                         //orphanRemoval = true  고아객체 제거
                                                 //주문 상품 엔티티와 일대다 매핑을 한다.
                                                 //외래키(order_id)가 order_item 테이블에 있으므로 연관관계의 주인은 OrderItem 엔티티이다. 
