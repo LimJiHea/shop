@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-public class Member {
+public class Member extends BaseEntity{                 //Auditing 기능을 적용하기 위해 BaseEntity 상속받기
 
     @Id
     @Column(name="member_id")
