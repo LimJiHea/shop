@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "cart_item")
-public class CartItem {
+public class CartItem extends BaseEntity{
 
     @Id
     @GeneratedValue     //주키의 값을 위한 자동 생성 전략을 명시

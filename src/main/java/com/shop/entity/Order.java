@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "orders")         //정렬시 사용하는 order 키워드가 있기 때문에 orders로 지정
 @Getter
 @Setter
-public class Order {
+public class Order extends BaseEntity{      //regTime, updateTime 삭제 후 BaseEntity 상속
 
     @Id
     @GeneratedValue
@@ -37,7 +37,7 @@ public class Order {
                                                 //속성의 값으로 "order"를 적어준 이유는 OrderItem에 있는 Order에 의해 관리된다는 의미
     private List<OrderItem> orderItems = new ArrayList<>();         //하나의 주문이 여러개의 주문 상품을 갖으므로 List 자료형을 사용해서 매핑
 
-    private LocalDateTime regTime;
+    //private LocalDateTime regTime;        삭제
 
-    private LocalDateTime updateTime;
+    //private LocalDateTime updateTime;     삭제
 }

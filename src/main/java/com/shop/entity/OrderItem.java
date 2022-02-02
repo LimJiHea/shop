@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-public class OrderItem {
+public class OrderItem extends BaseEntity{      //기존에 있던 regTime, updateTime 변수를 삭제후 BaseEntity를 상속
 
     @Id
     @GeneratedValue
@@ -29,7 +29,7 @@ public class OrderItem {
 
     private int count;      //주문수량
 
-    private LocalDateTime regTime;
+    //private LocalDateTime regTime;        삭제
 
-    private LocalDateTime updateTime;
+   // private LocalDateTime updateTime;     삭제
 }
