@@ -14,7 +14,7 @@ import org.thymeleaf.util.StringUtils;
 @Transactional
 public class ItemImgService {
 
-    @Value("${itemImgLocation}")
+    @Value("${itemImgLocation}")            //Value 어노테이션을 통해 application.properties 파일에 등록한 itemImgLocation 값을 불러와서 itemImgLocation변수에 넣어준다.
     private String itemImgLocation;
 
     private final ItemImgRepository itemImgRepository;
