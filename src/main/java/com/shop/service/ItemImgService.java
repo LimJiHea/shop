@@ -33,7 +33,10 @@ public class ItemImgService {
         }
 
         //상품 이미지 정보 저장
-        itemImg.updateItemImg(oriImgName, imgName, imgUrl);
+        itemImg.updateItemImg(oriImgName, imgName, imgUrl);         //입력받은 상품 이미지 정보를 저장한다
+                                                                    //oriImgName : 실제 로컬에 저장된 상품 이미지 파일의 이름
+                                                                    //imgName : 업로드했던 상품 이미지 파일의 원래 이름
+                                                                    //imgUrl : 업로드 결과 로컬에 저장된 상품 이미지 파일을 불러오는 경로
         itemImgRepository.save(itemImg);
     }
 }
