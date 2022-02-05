@@ -29,7 +29,7 @@ public class ItemImgService {
         //파일 업로드
         if(!StringUtils.isEmpty(oriImgName)){
             imgName = fileService.uploadFile(itemImgLocation, oriImgName, itemImgFile.getBytes());  //사용자가 상품의 이미지를 등록했다면 저장할 경로, 파일의 이름, 파일을 파일의 바이트 배열을 파일 업로드 파라미터로 uploadFile 메소드를 호출한다.
-            imgUrl = "/images/item/" + imgName;
+            imgUrl = "/images/item/" + imgName;         //저장한 상품의 이미지를 불러올 경로를 설정
         }
 
         //상품 이미지 정보 저장
