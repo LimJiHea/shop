@@ -34,7 +34,8 @@ public class ItemController {
             return "item/itemForm";
         }
 
-        if (itemImgFileList.get(0).isEmpty() && itemFormDto.getId() == null){       //0번째
+        if (itemImgFileList.get(0).isEmpty() && itemFormDto.getId() == null){       //상품 등록 시 첫 번째 이미지가 없다면 에러메시지+ 상품등록 페이지 전환
+                                                                                    // (상품 첫번째 이미지는 메인에서 보여줄 상품 이미지로 사용하기 위해 필수값 지정 )
             model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값입니다.");
             return "item/itemForm";
         }
