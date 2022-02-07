@@ -41,13 +41,13 @@ public class ItemController {
         }
 
         try {
-            itemService.saveItem(itemFormDto, itemImgFileList);
+            itemService.saveItem(itemFormDto, itemImgFileList);                 //상품 저장 로직 호출 (매개 변수로 상품 정보와 상품 이미지 정보를 담고 있는 itemImgFileList를 넘겨준다.)
         }catch (Exception e){
             model.addAttribute("errorMessage","상품 등록 중 에러가 발생하였습니다.");
             return "item/itemForm";
         }
 
-        return "redirect:/";
+        return "redirect:/";            //상품이 정상적으로 등록되었다면 메인으로 이동
 
     }
 }
