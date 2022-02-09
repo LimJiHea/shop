@@ -40,4 +40,10 @@ public class ItemService {
 
         return item.getId();
     }
+
+    @Transactional(readOnly = true)
+    public ItemFormDto getItemDtl(Long itemId){
+
+        List<ItemImg> itemImgList =
+    }
 }
