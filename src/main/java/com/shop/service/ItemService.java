@@ -44,7 +44,7 @@ public class ItemService {
         return item.getId();
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true)                         //상품 데이터를 읽어보는 트랜잭션을 읽기전용으로 실행
     public ItemFormDto getItemDtl(Long itemId){
 
         List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
