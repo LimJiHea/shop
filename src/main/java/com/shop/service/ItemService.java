@@ -45,16 +45,17 @@ public class ItemService {
     }
 
     @Transactional(readOnly = true)                         //상품 데이터를 읽어보는 트랜잭션을 읽기전용으로 실행
+                                                            //이럴경우 JPA가 더티체킹(변경감지)을 수행하지 않아서 성능을 향상 시킬 수 있다.
     public ItemFormDto getItemDtl(Long itemId){
 
-        List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
+        List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);     //상품 이미지 조회 (등록순 => 상품이미지 아이디 오름차순)
         List<ItemImgDto> itemImgDtoList = new ArrayList<>();
-        for (ItemImg itemImg : itemImgList){
+        for (ItemImg itemImg : itemImgList){                    //조회한 itemImg 엔티티를 ItemImgDto 객체로 만들어서 리스트에 추가한다.
             ItemImgDto itemImgDto = ItemImgDto.of(itemImg);
             itemImgDtoList.add(itemImgDto);
         }
 
-        Item item = itemRepository.findById(itemId)
+        Item item = itemRepository.findById(itemId)             //상품 아이디를 통해 상품 엔티티 조회 => 존재하지 않을 때는 EntityNotFoundException을 발생
                 .orElseThrow(EntityNotFoundException::new);
         ItemFormDto itemFormDto = ItemFormDto.of(item);
         itemFormDto.setItemImgDtoList(itemImgDtoList);
