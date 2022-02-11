@@ -55,7 +55,7 @@ public class ItemService {
             itemImgDtoList.add(itemImgDto);
         }
 
-        Item item = itemRepository.findById(itemId)             //상품 아이디를 통해 상품 엔티티 조회 => 존재하지 않을 때는 EntityNotFoundException을 발생
+        Item item = itemRepository.findById(itemId)             //상품 아이디를 통해 상품 엔티티 조회 => 존재하지 않을 때는 EntityNotFoundException을 발생시킨다.
                 .orElseThrow(EntityNotFoundException::new);
         ItemFormDto itemFormDto = ItemFormDto.of(item);
         itemFormDto.setItemImgDtoList(itemImgDtoList);
