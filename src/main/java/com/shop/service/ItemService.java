@@ -61,4 +61,7 @@ public class ItemService {
         itemFormDto.setItemImgDtoList(itemImgDtoList);
         return itemFormDto;
     }
+
+    //상품 수정
+    Item item = itemRepository.findById()
 }
