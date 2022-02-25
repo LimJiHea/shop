@@ -62,7 +62,6 @@ public class ItemService {
         return itemFormDto;
     }
 
-
-    //상품 수정 메소드
+    //상품 수정
     Item item = itemRepository.findById()
 }
