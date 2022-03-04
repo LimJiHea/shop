@@ -98,14 +98,15 @@ public class ItemController {
         return "redirect:/";
     }
 
-    @GetMapping(value = {"/admin/items", "/admin/items/{page}"})        //페이지 번호가 있는경우 or 페이지 번호가 없는 경우 두가지 매핑
+    @GetMapping(value = {"/admin/items", "/admin/items/{page}"})        //페이지 번호가 없는 경우 or 페이지 번호가 있는 경우 두가지 매핑
     public String itemManage(ItemSearchDto itemSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,3);
+
         Page<Item> items =
-                itemService.getAdminItemPage(itemSearchDto, pageable);
-        model.addAttribute("items",items);
-        model.addAttribute("itemSearchDto",itemSearchDto);
-        model.addAttribute("maxPage",5);
+                itemService.getAdminItemPage(itemSearchDto, pageable);  //조회조건, 페이징 정보 파라미터로 넘김
+        model.addAttribute("items",items);      //조회한 상품 데이터, 페이징 정보를 뷰에 전달
+        model.addAttribute("itemSearchDto",itemSearchDto);      //페이지 전환시 기존 검색 조건을 유지한 채 이동할 수 있도록 뷰에 다시 전달
+        model.addAttribute("maxPage",5);    //메뉴 하단에 보여줄 페이지 최대 개수
         return "item/itemMng";
     }
 }
