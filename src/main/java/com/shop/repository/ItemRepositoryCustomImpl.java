@@ -78,6 +78,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
 
         // List<Item> content = results.getResults();
         //long total = results.getTotal();
+
         long total = content.size();
         return new PageImpl<>(content, pageable,total);        //조회한 데이터를 Page 클래스의 구현체인 PageImpl 객체로 반환한다.
     }
