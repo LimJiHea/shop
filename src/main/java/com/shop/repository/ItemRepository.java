@@ -8,7 +8,8 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ItemRepository extends JpaRepository<Item, Long>, QuerydslPredicateExecutor<Item> {            //Repository 에 Predicate를 파라미터로 전달하기 위해 상속
+public interface ItemRepository extends JpaRepository<Item, Long>,
+        QuerydslPredicateExecutor<Item>, ItemRepositoryCustom {            //Repository 에 Predicate를 파라미터로 전달하기 위해 상속
 
     List<Item> findByItemNm(String itemNm);
 
