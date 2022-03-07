@@ -74,7 +74,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                 .orderBy(QItem.item.id.desc())
                 .offset(pageable.getOffset())       //데이터를 가지고올 시작 인덱스
                 .limit(pageable.getPageSize())         //한 번에 가지고 올 최대 개수를 지정한다.
-                .fetch();        // fetchResults 대신 List / fetch 사용한다.
+                .fetch();        // fetchResults 대신 List / fetch 사용한다.  // fetchCount도 같이 써야함
 
         // List<Item> content = results.getResults();
         //long total = results.getTotal();
