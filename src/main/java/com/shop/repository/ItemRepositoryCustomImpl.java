@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -76,11 +77,18 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                 .limit(pageable.getPageSize())         //한 번에 가지고 올 최대 개수를 지정한다.
                 .fetch();        // fetchResults 대신 List / fetch 사용한다.  // fetchCount도 같이 써야함
 
-        // List<Item> content = results.getResults();
-        //long total = results.getTotal();
 
-        long total = content.size();
+       long total = queryFactory.selectFrom(QItem.item)
+                .where(regDtsAfter(itemSearchDto.getSearchDateType()),
+                        searchSellStatusEq(itemSearchDto.getSearchSellStatus()),
+                        searchByLike(itemSearchDto.getSearchBy(),
+                                itemSearchDto.getSearchQuery()))
+                .fetchCount();
+
+       //System.out.println("total>>>>"+total);
+
         return new PageImpl<>(content, pageable,total);        //조회한 데이터를 Page 클래스의 구현체인 PageImpl 객체로 반환한다.
     }
+
 }
 
