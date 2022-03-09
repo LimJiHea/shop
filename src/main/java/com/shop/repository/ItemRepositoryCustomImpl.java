@@ -95,6 +95,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
 
     private BooleanExpression itemNmLike(String searchQuery){
         return StringUtils.isEmpty(searchQuery)? null:QItem.item.itemNm.like("%"+searchQuery+"%");
+        //검색어가 null이 아니면 상품명에 해당 검색어가 포함되는 상품을 조회하는 조건을 반환한다.
     }
 
     @Override
@@ -105,7 +106,8 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
 
         List<MainItemDto> content = queryFactory
                 .select(
-                        new QMainItemDto(
+                        new QMainItemDto(               //QMainItemDto 의 생성자에 반환할 값들을 넣어준다.
+                                                        //@QueryProjection을 사용하면 DTO로 바로 조회가 가능하다.
                         item.id,
                         item.itemNm,
                         item.itemDetail,
@@ -114,7 +116,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                 )
                 .from(itemImg)
                 .join(itemImg.item, item)
-                .where(itemImg.repimgYn.eq("Y"))
+                .where(itemImg.repimgYn.eq("Y"))            //상품 이미지에 경우 대표상품 이미지만 불러온다.
                 .where(itemNmLike(itemSearchDto.getSearchQuery()))
                 .orderBy(item.id.desc())
                 .offset(pageable.getOffset())
@@ -128,6 +130,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                         itemImg.imgUrl,
                         item.price))
                 .from(itemImg)
+                .join(itemImg.item, item)
                 .where(itemImg.repimgYn.eq("Y"))
                 .where(itemNmLike(itemSearchDto.getSearchQuery()))
                 .fetchCount();
