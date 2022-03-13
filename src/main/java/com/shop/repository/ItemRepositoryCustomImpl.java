@@ -135,6 +135,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                 .where(itemNmLike(itemSearchDto.getSearchQuery()))
                 .fetchCount();
 
+
         return new PageImpl<>(content, pageable, total);
     }
 }
