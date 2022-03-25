@@ -134,7 +134,6 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                 .where(itemImg.repimgYn.eq("Y"))
                 .where(itemNmLike(itemSearchDto.getSearchQuery()))
                 .fetchCount();
-
         return new PageImpl<>(content, pageable, total);
     }
 }
