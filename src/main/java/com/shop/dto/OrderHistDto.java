@@ -15,8 +15,8 @@ public class OrderHistDto {
 
     public OrderHistDto(Order order){
         this.orderId = order.getId();
-        //화면에 주문날짜를 yyyy-mm-dd HH:mm 형태로 전달하기위해 format 수정
-        this.orderDate = order.getOrderDate().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
+        //화면에 주문날짜를 yyyy-MM-dd HH:mm 형태로 전달하기위해 format 수정
+        this.orderDate = order.getOrderDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         this.orderStatus = order.getOrderStatus();
     }
 

@@ -50,4 +50,8 @@ public class OrderItem extends BaseEntity{      //기존에 있던 regTime, upda
     public int getTotalPrice(){
         return orderPrice * count;
     }
+
+    public void cancel(){
+        this.getItem().addStock(count);         // 주문 취소시 주문 수량만큼 상품의 재고를 더해준다.
+    }
 }

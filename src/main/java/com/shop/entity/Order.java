@@ -70,4 +70,13 @@ public class Order extends BaseEntity{      //regTime, updateTime 삭제 후 Bas
         }
         return totalPrice;
     }
+
+    //주문 취소 메소드
+    public void cancelOrder(){
+        this.orderStatus = OrderStatus.CANCEL;
+
+        for(OrderItem orderItem: orderItems){
+            orderItem.cancel();
+        }
+    }
 }
