@@ -2,6 +2,8 @@ package com.shop.service;
 
 import com.shop.dto.CartDetailDto;
 import com.shop.dto.CartItemDto;
+import com.shop.dto.CartOrderDto;
+import com.shop.dto.OrderDto;
 import com.shop.entity.Cart;
 import com.shop.entity.CartItem;
 import com.shop.entity.Item;
@@ -28,6 +30,7 @@ public class CartService {
     private final MemberRepository memberRepository;
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
+    private final OrderService orderService;
 
     
     
@@ -106,5 +109,32 @@ public class CartService {
                 .orElseThrow(EntityNotFoundException::new);
 
         cartItemRepository.delete(cartItem);
+    }
+
+
+    //주문로직 전달, 호출, 주문 상품 장바구니에서 제거
+    public Long orderCartItem(List<CartOrderDto> cartOrderDtoList, String email){
+        List<OrderDto> orderDtoList = new ArrayList<>();
+
+        for (CartOrderDto cartOrderDto: cartOrderDtoList){                 //장바구니 페이지에서 전달받은 주문 상품 번호를 이용하여 주문 로직으로 전달할 orderDto객체를 만든다.
+            CartItem cartItem = cartItemRepository.findById(cartOrderDto.getCartItemId())
+                    .orElseThrow(EntityNotFoundException::new);
+
+            OrderDto orderDto = new OrderDto();
+            orderDto.setItemId(cartItem.getItem().getId());
+            orderDto.setCount(cartItem.getCount());
+            orderDtoList.add(orderDto);
+        }
+
+        Long orderId = orderService.orders(orderDtoList, email);        //장바구니에 담은 상품을 주문하도록 주문 로직을 호출한다.
+
+        for (CartOrderDto cartOrderDto: cartOrderDtoList){              //주문한 상품 리스트를 가져와서 삭제한다. 
+            CartItem cartItem = cartItemRepository
+                    .findById(cartOrderDto.getCartItemId())
+                    .orElseThrow(EntityNotFoundException::new);
+            cartItemRepository.delete(cartItem);
+        }
+
+        return orderId;
     }
 }

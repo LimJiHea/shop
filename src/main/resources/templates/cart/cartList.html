@@ -81,7 +81,7 @@
             });
         }
 
-        function deleteconfirm(){
+        function deleteconfirm(obj){
             var decon = confirm("상품을 삭제하시겠습니까?");
 
             if(decon == true){
@@ -122,6 +122,19 @@
                 }
             });
         }
+
+
+        function ordercomfirm(){
+            var ordcon = confirm("상품을 주문하시겠습니까?");
+
+            if(ordcon == true){
+                orders();
+            }else if(ordcon == false){
+                   }
+        }
+
+
+
 
         function orders(){
             var token = $("meta[name='_csrf']").attr("content");
@@ -266,7 +279,7 @@
         </h2>
 
         <div class="text-center mt-3">
-            <button type="button" class="btn btn-primary btn-lg" onclick="orders()">주문하기</button>
+            <button type="button" class="btn btn-primary btn-lg" onclick="ordercomfirm()">주문하기</button>
         </div>
 
     </div>
